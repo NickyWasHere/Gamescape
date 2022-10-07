@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <title>Gamescape</title>
+        <script src="js/scripts.js"></script>
+        <link href="css/style.css" rel="stylesheet"/>
+
+    </head>
+
+    <body id="Page">
+
+        <!--Barra de navegação-->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark nb">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#Page">
+                        <div class="col-2">
+                            <img src="images/logo.png" alt="Logo" width="100%">
+                        </div>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <ul class="nav navbar-nav dropdown-menu-right">
+                        <li><a class="nav-link" href="#sub1">Novos Anúncios</a></li>
+                        <li><a class="nav-link" href="#sub2">Campetições Online</a></li>
+                        <li><a class="nav-link" href="#sub3">Hardware</a></li>
+                        <li><a class="nav-link" href="#sub4">Melhores Indies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!--Título-->
+        <div class="row jumbotron">
+            <div class="col-sm-9 col-md-9 col-lg-9 white">
+                <h1>Gamescape</h1>
+                <hr class="hrcolor">
+                <h4>O seu site de notícias do mundo dos games</h4>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-3 text-center my-auto">
+                <button class="btn-outline-primary" data-toggle="modal" data-target="#Plataformas">Cadastrar plataformas</button><br>
+                <button class="btn-outline-primary" data-toggle="modal" data-target="#Cadastro">Cadastrar usuários</button><br>
+                <button class="btn-outline-primary" onclick="visualizarAll()" data-toggle="modal" data-target="#View">Alterar usuários</button>
+            </div>
+        </div>
+        
+        <!--Modal Plataformas-->
+        <div class="modal fade" role="dialog" id="Plataformas">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!--Header-->
+                    <div class="modal-header">
+                        <h2 class="modal-title">Cadastrar plataforma</h2>
+                    </div>
+                    
+                    <!--Body-->
+                    <div class="modal-body">
+                        
+                        <!--Formulário-->
+
+                        <!--Plataforma-->
+                        <label class="control-label" for="plataform">Plataforma:</label>
+                        <input type="text" class="form-control" placeholder="Digite a plataforma que deseja adicionar" name="plataform" id="newPlat" required>
+
+                        <hr>
+                        <button onclick=newPlataform() class="btn-success" data-toggle="modal" data-target="#AlertPlat">Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Alerta Plataforma-->
+        <div class="modal fade" role="dialog" id="AlertPlat">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   
+                    <!--Sucesso-->
+                    <div class="alert alert-success hidden" id="successPlat">
+                        Plataforma cadastrada!
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Cadastro-->
+        <div class="modal fade" role="dialog" id="Cadastro">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!--Header-->
+                    <div class="modal-header">
+                        <h2 class="modal-title">Cadastrar usuário</h2>
+                    </div>
+                    
+                    <!--Body-->
+                    <div class="modal-body">
+                        
+                        <!--Formulário-->
+
+                        <!--Nome-->
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Nome completo:</label>
+                            <input type="text" class="form-control" placeholder="Digite seu nome completo" name="nome" id="nomeCad" required>
+                        </div>
+
+                        <!--Nome de usuário-->
+                        <div class="form-group">
+                            <label class="control-label" for="username">Nome de usuário:</label>
+                            <input type="text" class="form-control" placeholder="Digite seu nome de usuário" name="usuario" id="usuarioCad" required>
+                        </div>
+
+                        <!--Email-->
+                        <div class="form-group">
+                            <label class="control-label" for="email">Email:</label>
+                            <input type="email" class="form-control" placeholder="Digite seu email" name="email" id="emailCad" required>
+                        </div>
+
+                        <!--Data-->
+                        <div class="form-group">
+                            <label class="control-label" for="date">Data:</label>
+                            <input type="date" class="form-control" placeholder="Digite a data" name="date" id="dataCad" required>
+                        </div>
+
+                        <!--Plataforma-->
+                        <div class="form-group">
+                            <label class="control-label" for="plat">Plataforma:</label>
+                            <select name="plat" id="platCad"></select>
+                        </div>
+
+                        <hr>
+                        <button onclick=cadastrar() class="btn-success" data-toggle="modal" data-target="#AlertCad">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Alerta cadastro-->
+        <div class="modal fade" role="dialog" id="AlertCad">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   
+                    <!--Sucesso-->
+                    <div class="alert alert-success hidden" id="successCad">
+                        Cadastro realizado!
+                    </div>
+
+                    <!--Falha-->
+                    <div class="alert alert-danger hidden" id="dangerCad">
+                        Cadastro não realizado!
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Alterar-->
+        <div class="modal fade" role="dialog" id="View">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!--Header-->
+                    <div class="modal-header">
+                        <h2 class="modal-title">Alterar usuários</h2>
+                    </div>
+                    
+                    <!--Body-->
+                    <div class="modal-body">
+                        
+                        <!--Formulário-->
+
+                        <!--Selecionar usuário-->
+                        <label class="control-label" for="list">Pesquisar por usuário</label>
+                        <select type="list" class="form-control" id="verUser"></select>
+
+                        <!--Mostrar dados-->
+
+                        <hr>
+                        <!--Nome-->
+                        <label class="control-label" for="name">Nome completo:</label>
+                        <input type="type" class="form-control" id="showName">
+
+                        <!--Email-->
+                        <label class="control-label" for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" id="showEmail">
+
+                        <!--Data-->
+                        <label class="control-label" for="date">Data de cadastro:</label>
+                        <input type="date" class="form-control" name="date" id="showDate">
+
+                        <hr>
+                        <button onclick=mudar() class="btn-success" data-toggle="modal" data-target="#AlertAlt">Salvar mudanças</button>
+                        <hr>
+                        <button onclick=excluir() class="btn-danger" data-toggle="modal" data-target="#AlertDel">Excluir usuário</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Alerta salvar-->
+        <div class="modal fade" role="dialog" id="AlertAlt">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   
+                    <!--Alterado-->
+                    <div class="alert alert-success" id="successAlt">
+                        Alterações salvas!
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Alerta excluir-->
+        <div class="modal fade" role="dialog" id="AlertDel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                   
+                    <!--Excluido-->
+                    <div class="alert alert-danger" id="deleteAlt">
+                        Usuário excluído!
+                    </div>
+                                        
+                </div>
+            </div>
+        </div>
+
+        <!--Imagem principal-->
+        <img src="images/main.jpeg" alt="Imagem principal" width="100%">
+
+        <!--Pequenos textos-->
+        <div id="textos">
+            <div class="container-fluid" id="sub1">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                        <img src="images/imagem1.jpg" alt="Imagem Elden Ring" width=100%>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-8 white">
+                        <h2>Novos Anúncios</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Ut accumsan turpis ac nibh elementum, eu pharetra mauris mollis. 
+                            Cras molestie purus sit amet arcu lobortis, eu fringilla eros laoreet.
+                            Nullam at tellus nunc. Ut molestie orci at massa maximus, in pellentesque nisl mollis. 
+                            Nunc imperdiet non diam at dapibus. Vivamus ultricies aliquam neque, id elementum tortor egestas vitae. 
+                            Donec quis mattis augue. In nec commodo leo, id ornare mauris. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Proin eros erat, vestibulum eget maximus vel, feugiat in augue. 
+                        </p>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="container-fluid" id="sub2">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-4">
+                        <img src="images/imagem2.jpeg" alt="Imagem Mario Kart" width=100%>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-8 white">
+                        <h2>Competições Online</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Ut accumsan turpis ac nibh elementum, eu pharetra mauris mollis. 
+                            Cras molestie purus sit amet arcu lobortis, eu fringilla eros laoreet.
+                            Nullam at tellus nunc. Ut molestie orci at massa maximus, in pellentesque nisl mollis. 
+                            Nunc imperdiet non diam at dapibus. Vivamus ultricies aliquam neque, id elementum tortor egestas vitae. 
+                            Donec quis mattis augue. In nec commodo leo, id ornare mauris. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Proin eros erat, vestibulum eget maximus vel, feugiat in augue. 
+                        </p>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="container-fluid" id="sub3">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-4 white">
+                        <img src="images/imagem3.jpeg" alt="Imagem Hardware" width=100%>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-8 white">
+                        <h2>Hardware</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Ut accumsan turpis ac nibh elementum, eu pharetra mauris mollis. 
+                            Cras molestie purus sit amet arcu lobortis, eu fringilla eros laoreet.
+                            Nullam at tellus nunc. Ut molestie orci at massa maximus, in pellentesque nisl mollis. 
+                            Nunc imperdiet non diam at dapibus. Vivamus ultricies aliquam neque, id elementum tortor egestas vitae. 
+                            Donec quis mattis augue. In nec commodo leo, id ornare mauris. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Proin eros erat, vestibulum eget maximus vel, feugiat in augue. 
+                        </p>
+                    </div>
+                </div>
+            </div><br>
+
+
+            <div class="container-fluid" id="sub4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-4 white">
+                        <img src="images/imagem4.jpg" alt="Imagem Dead Cells" width=100%>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-8 white">
+                        <h2>Melhores Indies</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Ut accumsan turpis ac nibh elementum, eu pharetra mauris mollis. 
+                            Cras molestie purus sit amet arcu lobortis, eu fringilla eros laoreet.
+                            Nullam at tellus nunc. Ut molestie orci at massa maximus, in pellentesque nisl mollis. 
+                            Nunc imperdiet non diam at dapibus. Vivamus ultricies aliquam neque, id elementum tortor egestas vitae. 
+                            Donec quis mattis augue. In nec commodo leo, id ornare mauris. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Proin eros erat, vestibulum eget maximus vel, feugiat in augue. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
